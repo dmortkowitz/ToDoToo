@@ -8,20 +8,20 @@ namespace ToDoList.Tests {
     public class ItemTest : IDisposable
     {
         [TestMethod]
-        public void GetDescription_ReturnsDescription_String () {
+        public void GetDescription_ReturnsDescription_String() {
             // Arrange
             string description = "Walk the dog.";
-            Item newItem = new Item (description);
+            Item newItem = new Item(description);
 
             // Act
-            string result = newItem.GetDescription ();
+            string result = newItem.GetDescription();
 
             // Assert
             Assert.AreEqual (description, result);
         }
 
         [TestMethod]
-        public void SetDescription_Setdescription_String () {
+        public void SetDescription_Setdescription_String() {
             // Arrange
             string description = "Walk the dog.";
             Item newItem = new Item (description);
@@ -29,21 +29,21 @@ namespace ToDoList.Tests {
             // Act
             string updatedDescription = "Do the dishes";
             newItem.SetDescription (updatedDescription);
-            string result = newItem.GetDescription ();
+            string result = newItem.GetDescription();
 
             // Assert
             Assert.AreEqual (updatedDescription, result);
         }
 
         [TestMethod]
-        public void Save_ItemIsSavedToInstances_Item () {
+        public void Save_ItemIsSavedToInstances_Item() {
             // Arrange
             string description = "Walk the dog.";
             Item newItem = new Item (description);
             newItem.Save ();
 
             // Act
-            List<Item> instances = Item.GetAll ();
+            List<Item> instances = Item.GetAll();
             Item savedItem = instances[0];
 
             // Assert
