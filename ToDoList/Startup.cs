@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace FriendLetter 
+namespace ToDoList
 {
-  public class Startup 
+  public class Startup
   {
-    public Startup (IHostingEnvironment env) 
+    public Startup (IHostingEnvironment env)
     {
       var builder = new ConfigurationBuilder ()
         .SetBasePath (env.ContentRootPath)
@@ -18,12 +18,12 @@ namespace FriendLetter
 
     public IConfigurationRoot Configuration { get; }
 
-    public void ConfigureServices (IServiceCollection services) 
+    public void ConfigureServices (IServiceCollection services)
     {
       services.AddMvc ();
     }
 
-    public void Configure (IApplicationBuilder app) 
+    public void Configure (IApplicationBuilder app)
     {
       app.UseMvc (routes => {
         routes.MapRoute (
@@ -34,5 +34,9 @@ namespace FriendLetter
         await context.Response.WriteAsync ("Hello World!");
       });
     }
+  }
+  public static class DBConfiguration
+  {
+    public static string ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=todo;";
   }
 }
