@@ -9,7 +9,6 @@ namespace ToDoList.Models
   {
     private int
     private string _description;
-
     public Item(string Description, int Id = 0)
     {
       _id = Id;
