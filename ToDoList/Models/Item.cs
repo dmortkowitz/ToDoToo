@@ -58,6 +58,32 @@ namespace ToDoList.Models
         conn.Dispose();
       }
     }   
+    public void Edit(string newDescription)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"UPDATE items SET description = @newDescription WHERE id = @searchId;";
+
+      MySqlParameter searchId = new MySqlParameter();
+      searchId.ParameterName = "@searchId";
+      searchId.Value = _id;
+      cmd.Parameters.Add(searchId);
+
+      MySqlParameter description = new MySqlParameter();
+      description.ParameterName = "@newDescription";
+      description.Value = newDescription;
+      cmd.Parameters.Add(description);
+
+      cmd.ExecuteNonQuery();
+      _description = newDescription;
+
+      conn.Close();
+      if (conn != null)
+      {
+          conn.Dispose();
+      }
+    }
     public static List<Item> GetAll() 
     {
       List<Item> allItems = new List<Item> { };
@@ -81,7 +107,8 @@ namespace ToDoList.Models
       }
       return allItems;
     }
-    public static void DeleteAll () 
+
+    public static void DeleteAll() 
     {
       MySqlConnection conn = DB.Connection ();
       conn.Open ();
@@ -97,6 +124,7 @@ namespace ToDoList.Models
         conn.Dispose ();
       }
     }
+    
     public static Item Find(int id)
     {
       MySqlConnection conn = DB.Connection();
