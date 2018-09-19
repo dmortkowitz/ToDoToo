@@ -7,16 +7,14 @@ namespace ToDoList.Models
   public class Category
   {
     private string _name;
-    private string _items;
     private int _id;
- 
+    private List <Item> _items;
 
-    public Category(string name, string items, int id = 0)
+    public Category(string name, List<Item> items, int id = 0)
     {
       _name = name;
-      _items = items;
       _id = id;
-     
+      _items = new List<Item>{};
     }
     public override bool Equals(System.Object otherCategory)
     {
@@ -42,6 +40,10 @@ namespace ToDoList.Models
     {
       return _id;
     }
+  public List<Item> AddItem(Item _item)
+  {
+    return _items;
+  }
     public void Save()
     {
       MySqlConnection conn = DB.Connection();
@@ -156,9 +158,6 @@ namespace ToDoList.Models
             }
             return allCategoryItems;
         }
-    public void AddItem(Item item)
-    {
-      _items.Add(item);
-    }
+
   }
 }
