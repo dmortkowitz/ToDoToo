@@ -127,7 +127,7 @@ namespace ToDoList.Models
     
     public static Item Find(int id)
     {
-      MySqlConnection conn = DB.Connection();
+      MySqlConnection conn = DB.Connection(); //Connection code stays same for all database 
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
       cmd.CommandText = @"SELECT * FROM `items` WHERE id = @thisId;";
