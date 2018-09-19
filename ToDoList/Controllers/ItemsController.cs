@@ -14,7 +14,7 @@ namespace ToDoList.Controllers
             return View(allItems);
         }
 
-        [HttpGet("/categories/items/new")]
+        [HttpGet("/categories/{categoryid}/items/new")]
         public ActionResult CreateForm()
         {
             return View();
@@ -56,6 +56,35 @@ namespace ToDoList.Controllers
             Item.DeleteAll();
             return View();
         }
-
+        [HttpGet("/categories/{categoryId}/items/new")]
+        public ActionResult CreateForm(int categoryId)
+        {
+          Dictionary<string, object> model = new Dictionary<string, object>();
+          Category category = Category.Find(categoryId);
+          return View(category);
+        }
+        
+        [HttpGet("/categories/{categoryId}/items/{itemId}")]
+        public ActionResult Details(int categoryId, int itemId)
+        {
+          Item item = Item.Find(itemId);
+          Dictionary<string, object> model = new Dictionary<string, object>();
+          Category category = Category.Find(categoryId);
+          model.Add("item", item);
+          model.Add("category", category);
+          return View(item);
+        }
+        [HttpPost ("/items")]
+        public ActionResult CreateItem (int categoryId, string itemDescription) 
+        {
+          Dictionary<string, object> model = new Dictionary<string, object> ();
+          Category foundCategory = Category.Find (categoryId);
+          Item newItem = new Item (itemDescription);
+          foundCategory.AddItem(newItem);
+          List<Item> categoryItems = foundCategory.GetItems ();
+          model.Add ("items", categoryItems);
+          model.Add ("category", foundCategory);
+          return View ("Details", model);
+        }
     }
 }

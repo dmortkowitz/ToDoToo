@@ -8,7 +8,7 @@ namespace ToDoList.Models
   {
     private string _name;
     private int _id;
-    // private List <Item> _items;
+    private List <Item> _items;
 
     public Category(string name, int id = 0)
     {
@@ -39,10 +39,10 @@ namespace ToDoList.Models
     {
       return _id;
     }
-    // public List<Item> AddItem(Item _item)
-    // {
-    //   return _items;
-    // }
+    public List<Item> AddItem(Item _item)
+    {
+      return _items;
+    }
     public void Save()
     {
       MySqlConnection conn = DB.Connection();
