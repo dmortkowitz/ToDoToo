@@ -8,13 +8,12 @@ namespace ToDoList.Models
   {
     private string _name;
     private int _id;
-    private List <Item> _items;
+    // private List <Item> _items;
 
-    public Category(string name, List<Item> items, int id = 0)
+    public Category(string name, int id = 0)
     {
       _name = name;
       _id = id;
-      _items = new List<Item>{};
     }
     public override bool Equals(System.Object otherCategory)
     {
@@ -40,10 +39,10 @@ namespace ToDoList.Models
     {
       return _id;
     }
-  public List<Item> AddItem(Item _item)
-  {
-    return _items;
-  }
+    // public List<Item> AddItem(Item _item)
+    // {
+    //   return _items;
+    // }
     public void Save()
     {
       MySqlConnection conn = DB.Connection();
