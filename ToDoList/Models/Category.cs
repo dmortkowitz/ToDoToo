@@ -7,12 +7,16 @@ namespace ToDoList.Models
   public class Category
   {
     private string _name;
+    private string _items;
     private int _id;
+ 
 
-    public Category(string name, int id = 0)
+    public Category(string name, string items, int id = 0)
     {
       _name = name;
+      _items = items;
       _id = id;
+     
     }
     public override bool Equals(System.Object otherCategory)
     {
@@ -152,13 +156,9 @@ namespace ToDoList.Models
             }
             return allCategoryItems;
         }
-    // public List<Item> GetItems()
-    // {
-    //   return _items;
-    // }
-    // public void AddItem(Item item)
-    // {
-    //   _items.Add(item);
-    // }
+    public void AddItem(Item item)
+    {
+      _items.Add(item);
+    }
   }
 }

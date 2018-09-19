@@ -9,6 +9,14 @@ namespace ToDoList.Models
   {
     private int _id;
     private string _description;
+    private int _categoryId;
+
+    public Item (string Description, int Id = 0, int CategoryId = 0) 
+    {
+      _id = Id;
+      _description = Description;
+      _categoryId = CategoryId;
+    }
     public string GetDescription() 
     {
       return _description;
@@ -17,11 +25,11 @@ namespace ToDoList.Models
     {
       return _id;
     }
-    public Item (string Description, int Id = 0) 
+    public int GetCategoryId()
     {
-      _id = Id;
-      _description = Description;
+      return _categoryId;
     }
+
     public override bool Equals(System.Object otherItem)
     {
       if (!(otherItem is Item))
@@ -33,6 +41,7 @@ namespace ToDoList.Models
         Item newItem = (Item) otherItem;
         bool idEquality = (this.GetId() == newItem.GetId());
         bool descriptionEquality = (this.GetDescription() == newItem.GetDescription());
+        bool categoryIdEquality = (this.GetCategoryId() == newItem.GetCategoryId());
         return (idEquality && descriptionEquality);
       }
     }
