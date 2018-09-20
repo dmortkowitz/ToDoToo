@@ -30,7 +30,7 @@ namespace ToDoList.Controllers
       return RedirectToAction("Index");
     }
 
-    [HttpGet ("/categories/{id}/items/new")]
+    [HttpGet ("/categories/{id}")]
     public ActionResult Details (int id) 
     {
     Dictionary<string, object> model = new Dictionary<string, object> ();
