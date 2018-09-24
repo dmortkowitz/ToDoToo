@@ -1,19 +1,8 @@
-<!-- <h1>To Do List</h1>
+<h1> To Do List</h1>
 <ul>
-  <h1>eh</h1>
   @foreach (var item in Model)
-    {
-      <h4>@item.GetDescription() | <a href="/items/@item.GetId()/update">Edit</a></h4>
-    }
-  </ul>
-<a href="/items/new">Add a new item.</a> -->
-
-<h1>To Do List</h1>
-<ul>
- <h1>eh</h1>
- @foreach (var item in Model)
-   {
-   <li>@item.GetDescription()</li>
-   }
+  {
+    <li><a href='/categories/@Model["item"].GetCategoryId()/items/@Model["item"].GetId()'>@item.GetDescription()</a></li>
+  }
 </ul>
-<a href="/items/new">Add a new item.</a>
+<a href="/categories/{categoryId}/items/new">Add a new item.</a>

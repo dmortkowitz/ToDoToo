@@ -26,32 +26,34 @@ namespace ToDoList.Controllers
     {
       Category newCategory = new Category(categoryName);
       newCategory.Save();
-      //List<Category> allCategories = Category.GetAll ();
-      return RedirectToAction("Index");
+      List<Category> allCategories = Category.GetAll();
+      return RedirectToAction("Index", allCategories);
     }
-
+    
+    // [HttpPost ("/items")]
+    // public ActionResult CreateItem (int categoryId, string itemDescription) 
+    // {
+    //   Dictionary<string, object> model = new Dictionary<string, object> ();
+    //   Category foundCategory = Category.Find(categoryId);
+    //   Item newItem = new Item (itemDescription, categoryId);
+    //   newItem.Save();
+    //   List<Item> categoryItems = foundCategory.GetItems();
+    //   model.Add ("items", categoryItems);
+    //   model.Add ("category", foundCategory);
+    //   return View ("index", model);
+    // }
+      
     [HttpGet ("/categories/{id}")]
     public ActionResult Details (int id) 
     {
     Dictionary<string, object> model = new Dictionary<string, object> ();
-    Category selectedCategory = Category.Find (id);
-    List<Item> categoryItems = selectedCategory.GetItems ();
+    Category selectedCategory = Category.Find(id);
+    List<Item> categoryItems = selectedCategory.GetItems();
     model.Add ("category", selectedCategory);
     model.Add ("items", categoryItems);
     return View (model);
     }
 
-    // [HttpPost ("/items")]
-    // public ActionResult CreateItem (int categoryId, string itemDescription) 
-    // {
-    //   Dictionary<string, object> model = new Dictionary<string, object> ();
-    //   Category foundCategory = Category.Find (categoryId);
-    //   Item newItem = new Item (itemDescription);
-    //   foundCategory.Save(newItem);
-    //   List<Item> categoryItems = foundCategory.GetItems ();
-    //   model.Add ("items", categoryItems);
-    //   model.Add ("category", foundCategory);
-    //   return View ("Details", model);
-    // }
+    
   }
 }
